@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"omg.testingtools/testmodule"
+	"github.com/dedalqq/omg.testingtools/testmodule"
 )
 
 func TestSetPrivateValue(t *testing.T) {
