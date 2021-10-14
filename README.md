@@ -3,6 +3,7 @@
 [![Go](https://github.com/dedalqq/omg.testingtools/actions/workflows/go.yml/badge.svg)](https://github.com/dedalqq/omg.testingtools/actions/workflows/go.yml)
 [![Go Report Card](https://goreportcard.com/badge/github.com/dedalqq/omg.testingtools)](https://goreportcard.com/report/github.com/dedalqq/omg.testingtools)
 [![Coverage Status](https://coveralls.io/repos/github/dedalqq/omg.testingtools/badge.svg?branch=master)](https://coveralls.io/github/dedalqq/omg.testingtools?branch=master)
+[![Go Reference](https://pkg.go.dev/badge/github.com/dedalqq/omg.testingtools.svg)](https://pkg.go.dev/github.com/dedalqq/omg.testingtools)
 
 This tool can be useful for writing a tests. If you want change private field in struct from imported libraries than it can help you.
 
