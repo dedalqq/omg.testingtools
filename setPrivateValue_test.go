@@ -12,7 +12,7 @@ func TestSetPrivateValue(t *testing.T) {
 	SetPrivateValue(&qq, "c", []int{1, 2, 3, 4})
 	SetPrivateValue(&qq, "b", "qwe")
 
-	if fmt.Sprint(qq) != "{123 qwe [1 2 3 4]}" {
+	if fmt.Sprint(qq) != "{false 123 qwe [1 2 3 4]}" {
 		t.Fail()
 	}
 }

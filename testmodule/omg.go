@@ -1,13 +1,14 @@
 package testmodule
 
 type TestStruct struct {
-	a int
-	b string
-	c []int
+	a bool
+	b int
+	c string
+	d []int
 }
 
 func NewQQ(a int, b string, c []int) TestStruct {
 	return TestStruct{
-		a, b, c,
+		false, a, b, c,
 	}
 }

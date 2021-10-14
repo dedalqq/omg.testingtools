@@ -6,6 +6,8 @@ import (
 	"unsafe"
 )
 
+// SetPrivateValue sets new a value in to the struct. Use it if you need to get access to private
+// field of the struct from imported package. important: It function must be using only for the tests.
 func SetPrivateValue(obj interface{}, fieldName string, value interface{}) {
 	reflectValue := reflect.ValueOf(obj)
 
@@ -22,23 +24,17 @@ func SetPrivateValue(obj interface{}, fieldName string, value interface{}) {
 
 	newReflectValueType := reflect.TypeOf(value)
 
-	var offset uintptr
+	if fieldType, ok := reflectType.FieldByName(fieldName); ok {
+		currentFieldType := fieldType.Type.String()
 
-	for i := 0; i < reflectValue.NumField(); i++ {
-		if reflectType.Field(i).Name == fieldName {
-			currentFieldType := reflectType.Field(i).Type.String()
-
-			if newReflectValueType.String() != currentFieldType {
-				panic(fmt.Sprintf("incorrect type: must be %s", currentFieldType))
-			}
-
-			fieldPtr := unsafe.Pointer(reflectValue.UnsafeAddr() + offset)
-			reflect.NewAt(newReflectValueType, fieldPtr).Elem().Set(reflect.ValueOf(value))
-
-			return
+		if newReflectValueType.String() != currentFieldType {
+			panic(fmt.Sprintf("incorrect type: must be %s", currentFieldType))
 		}
 
-		offset += reflectValue.Field(i).Type().Size()
+		fieldPtr := unsafe.Pointer(reflectValue.UnsafeAddr() + fieldType.Offset)
+		reflect.NewAt(newReflectValueType, fieldPtr).Elem().Set(reflect.ValueOf(value))
+
+		return
 	}
 
 	panic(fmt.Sprintf("Field [%s] not found in struct", fieldName))
