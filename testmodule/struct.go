@@ -7,8 +7,8 @@ type TestStruct struct {
 	d []int
 }
 
-func NewQQ(a int, b string, c []int) TestStruct {
+func NewTestStruct(a bool, b int, c string, d []int) TestStruct {
 	return TestStruct{
-		false, a, b, c,
+		a: a, b: b, c: c, d: d,
 	}
 }
